@@ -237,7 +237,7 @@ export class OneNoteImporter extends FormatImporter {
 			return;
 		}
 
-		this.accountSetting = new Setting(contentEl)
+		this.accountSetting = new Setting(this.settingsIn(contentEl))
 			.setName(i18n.importer.onenote.nameAccount())
 			.addButton(button => {
 				this.organizationButton = button;
@@ -491,6 +491,7 @@ export class OneNoteImporter extends FormatImporter {
 
 	private drawSectionPicker(contentEl: HTMLElement): void {
 		this.picker = new TreePicker<OneNoteTreeNode>(contentEl, {
+			setting: this.addSetting('source'),
 			name: i18n.importer.onenote.nameSections(),
 			desc: i18n.importer.onenote.descSections(),
 			hint: signedOutHint(),
